@@ -389,7 +389,7 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
         cc_flag += ["-mllvm", "-amdgpu-coerce-illegal-types=1"]
 
     extra_compile_args = {
-        "cxx": ["-O3", "-std=c++17", "-DLEGACY_HIPBLAS_DIRECT=ON] + generator_flag,
+        "cxx": ["-O3", "-std=c++17", "-DLEGACY_HIPBLAS_DIRECT=ON"] + generator_flag,
         "nvcc": cc_flag + generator_flag,
     }
 
