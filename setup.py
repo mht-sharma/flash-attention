@@ -370,6 +370,7 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
                 "-DCK_ENABLE_INT8",
                 "-DCK_USE_XDL",
                 "-DUSE_PROF_API=1",
+                "-DLEGACY_HIPBLAS_DIRECT=ON",
                 # "-DFLASHATTENTION_DISABLE_BACKWARD",
                 "-D__HIP_PLATFORM_HCC__=1"]
 
@@ -388,7 +389,7 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
         cc_flag += ["-mllvm", "-amdgpu-coerce-illegal-types=1"]
 
     extra_compile_args = {
-        "cxx": ["-O3", "-std=c++17"] + generator_flag,
+        "cxx": ["-O3", "-std=c++17", "-DLEGACY_HIPBLAS_DIRECT=ON] + generator_flag,
         "nvcc": cc_flag + generator_flag,
     }
 
