@@ -350,7 +350,7 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
                        "csrc/flash_attn_ck/mha_varlen_bwd.cu",
                        "csrc/flash_attn_ck/mha_varlen_fwd.cu"] + glob.glob(f"build/fmha_*wd*.cu")
     extra_compile_args = {
-        "cxx": ["-O3", "-std=c++17"] + generator_flag,
+        "cxx": ["-O3", "-std=c++17", "-DLEGACY_HIPBLAS_DIRECT=ON"] + generator_flag,
         "nvcc":
             [
                 "-O3","-std=c++17",
@@ -367,6 +367,7 @@ elif not SKIP_CUDA_BUILD and IS_ROCM:
                 "-DCK_USE_XDL",
                 "-DUSE_PROF_API=1",
                 "-D__HIP_PLATFORM_HCC__=1",
+                "-DLEGACY_HIPBLAS_DIRECT=ON",
                 # "-DFLASHATTENTION_DISABLE_BACKWARD",
             ]
             + generator_flag
